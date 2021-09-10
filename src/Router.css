@@ -1,0 +1,84 @@
+.ds-flow {
+    display: flex;
+    flex-direction: column;
+}
+
+.router-container {
+    background-color: var(--secondary-space);
+    /* background-color: aliceblue; */
+    border-radius: 8px;
+    border: solid 1px rgb(108, 107, 105);
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    bottom: .5vh;
+    left: 34vw;
+    /* vw nya  belom fix */
+    opacity: 0.4;
+    margin-bottom: .25rem;
+
+}
+
+.router-container:hover {
+    opacity: 0.7;
+}
+  
+.router-list {
+    font-size: 8pt;
+    padding: .5rem;
+    padding-right: .9rem;
+    display: flex;
+    text-align: center;
+    /* flex-direction: row; */
+}
+
+.router-box {
+    background-color: var(--violet);
+    /* background-color: rgb(162, 64, 254); */
+    border-radius: var(--border-radius-norm);
+    min-height: 36px;
+    width: 36px;
+    align-items: center;
+    margin: .1rem;
+    margin-left: .55rem;
+    padding: .25rem;
+}
+
+.main-icon {
+    height: 18pt;
+    padding-top: .4rem;
+    pointer-events: none;
+}
+
+
+.fade-in {
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
+}
+@keyframes fadeIn {
+    10% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    10% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    10% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    10% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    10% {opacity:0;}
+    100% {opacity:1;}
+}

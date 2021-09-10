@@ -1,0 +1,18 @@
+:root {
+    --blue: #419efb;
+    --white: #ffffff; 
+    --space: #282c34;
+    --secondary-space: #3a3f4e;
+    --violet: rgb(156, 59, 248);
+    --orange: rgb(249, 162, 0);
+    --green: rgb(150, 209, 34);
+    --yellow: rgb(190, 190, 4)
+}
+
+.b-blue {
+  background-color: var(--blue);
+}
+
+.b-orange {
+  background-color: var(--orange);
+}

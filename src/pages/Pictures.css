@@ -1,0 +1,12 @@
+.ds-pictures {
+    /* justify-content: start; */
+    margin: .5rem;
+}
+
+.post-img {
+    width: 300px;
+    height: 300px;
+    border-radius: var(--border-radius-norm);
+    background-color: var(--secondary-space);
+    margin: 1rem;
+}

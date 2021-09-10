@@ -1,0 +1,112 @@
+@import url("./assets/css/grid.css");
+@import url("./assets/css/color.css");
+@import url("./assets/css/spacing.css");
+@import url("./assets/css/font.css");
+
+:root {
+  --border-radius-norm: 8px;
+}
+
+.ds-border {
+  border: solid 1px var(--secondary-space);
+  border-radius: var(--border-radius-norm);
+}
+
+.ds-align-center {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.ds-align-left {
+  display: flex;
+  text-align: left;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+
+.ds-side-title {
+  color: var(--blue);
+}
+
+.ds-btn-yes {
+  background-color: var(--green);
+  border: solid 1px var(--green);
+  border-radius: var(--border-radius-norm);
+}
+
+.ds-hr {
+  height: 2px;
+  border-width: 0;
+  color: gray;
+  background-color: gray;
+}
+
+.ds-modal {
+  overflow: none;
+  /* visibility: hidden; */
+  /* display: none; */
+  justify-content: center;
+  align-items: center;
+
+  position: fixed; 
+  z-index: 1400; 
+  top: 60vh;
+  right: 50vw;
+  bottom: 0;
+  left: 50vw;
+  background-color: fade(black, 60%);
+}
+
+.App {
+  text-align: center;
+  background-color: var(--space);
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: var(--space);
+}
+
+.App-main {
+  min-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  /* font-size: calc(10px + 2vmin); */
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tribute {
+  font-size: 8pt;
+  background-color: white;
+
+}
