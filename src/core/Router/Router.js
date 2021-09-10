@@ -6,7 +6,7 @@ import {
     Link
 } from "react-router-dom";
 import './Router.css';
-import routes from './assets/js/routes';
+import routes from './routes';
 
 let listRoutes = [];
 for(let rt in routes) {
@@ -32,19 +32,17 @@ export default function AppRouter() {
 
                 
                 <div className="router-container fade-in">
-                    <div className="router-list ds-border">
+                    <div className="router-list">
                         {routes.menus.map((route, index) => {
-                            if(index) {
-                                return (
-                                    <Link 
-                                        className={route.class || 'router-box'}
-                                        key={"routes.menus" + index}
-                                        to={route.path}
-                                        exact={route.exact ? route.exact.toString(): "false"} >
-                                            <img src={route.icon} alt="icon" className="main-icon" />
-                                    </Link>
-                                )
-                            }
+                            return (
+                                <Link 
+                                    className={route.class || 'router-box'}
+                                    key={"routes.menus" + index}
+                                    to={route.path}
+                                    exact={route.exact ? route.exact.toString(): "false"} >
+                                        <img src={route.icon} alt="icon" className="main-icon" />
+                                </Link>
+                            )
                         })}
                     </div>
                 </div>

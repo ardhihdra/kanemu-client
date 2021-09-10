@@ -1,4 +1,4 @@
-import FutureFeature from '../component/FutureFeature';
+import FutureFeature from '../components/FutureFeature';
 
 export default function About() {
     return (

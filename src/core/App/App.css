@@ -1,15 +1,11 @@
-@import url("./assets/css/grid.css");
-@import url("./assets/css/color.css");
-@import url("./assets/css/spacing.css");
-@import url("./assets/css/font.css");
+@import url("../../assets/css/grid.css");
+@import url("../../assets/css/color.css");
+@import url("../../assets/css/spacing.css");
+@import url("../../assets/css/font.css");
+@import url("../../assets/css/animation.css");
 
 :root {
   --border-radius-norm: 8px;
-}
-
-.ds-border {
-  border: solid 1px var(--secondary-space);
-  border-radius: var(--border-radius-norm);
 }
 
 .ds-align-center {
@@ -42,7 +38,7 @@
   height: 2px;
   border-width: 0;
   color: gray;
-  background-color: gray;
+  background-color: white;
 }
 
 .ds-modal {
@@ -58,7 +54,7 @@
   right: 50vw;
   bottom: 0;
   left: 50vw;
-  background-color: fade(black, 60%);
+  background-color: white;
 }
 
 .App {
@@ -66,14 +62,9 @@
   background-color: var(--space);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    /* animation: App-logo-spin infinite 20s linear; */
   }
 }
 

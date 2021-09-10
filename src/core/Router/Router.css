@@ -1,0 +1,53 @@
+.ds-flow {
+    display: flex;
+    flex-direction: column;
+}
+
+.router-container {
+    background-color: transparent;
+    position: fixed;
+    border: 1px hidden black;
+    border-bottom-style: solid;
+    left: 43vw;
+    justify-content: center;
+    bottom: 1vh;
+    /* vw nya  belom fix */
+    margin: 1rem 0;
+
+}
+
+.router-container:hover {
+    opacity: 0.9;
+    background-color: rgb(222, 222, 222);
+    border: 1px hidden black;
+    border-radius: 8px;
+}
+  
+.router-list {
+    font-size: 8pt;
+    padding: .5rem;
+    padding-right: .9rem;
+    display: flex;
+    text-align: center;
+    /* flex-direction: row; */
+}
+
+.router-box {
+    background-color: var(--green-secondary);
+    /* background-color: var(--white); */
+    border-radius: var(--border-radius-norm);
+    /* border: 1px solid black; */
+    min-height: 36px;
+    width: 36px;
+    align-items: center;
+    margin: .1rem;
+    margin-left: 1rem;
+    margin-right: .55rem;
+    padding: .4rem;
+}
+
+.main-icon {
+    height: 18pt;
+    padding-top: .4rem;
+    pointer-events: none;
+}
