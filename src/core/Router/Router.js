@@ -36,10 +36,10 @@ export default function AppRouter() {
                         {routes.menus.map((route, index) => {
                             return (
                                 <Link 
-                                    className={route.class || 'router-box'}
+                                    className="router-box"
                                     key={"routes.menus" + index}
                                     to={route.path}
-                                    exact={route.exact ? route.exact.toString(): "false"} >
+                                    exact={route.exact ? route.exact.toString(): "false"} title={route.title}>
                                         <img src={route.icon} alt="icon" className="main-icon" />
                                 </Link>
                             )

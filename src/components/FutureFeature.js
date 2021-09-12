@@ -12,6 +12,7 @@ const title = {
 export default class FutureFeature extends React.Component {
     constructor() {
         super();
+        this.message = ''
     }
 
     render() {
@@ -19,7 +20,7 @@ export default class FutureFeature extends React.Component {
         return (
             <div className="ds-m-2 ds-mr-5 ds-ml-5 ds-p-4 ds-border" style={dsFeature}>
                 {/* Side Menu */}
-                <p style={title}>Future Feature</p>
+                <p style={title}>Future Feature {this.message}</p>
                 <p>{description}</p>
             </div>
         )

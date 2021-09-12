@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './core/App/App';
 import reportWebVitals from './reportWebVitals';
+const dotenv = require('dotenv')
+const dotenvExpand = require('dotenv-expand')
+
+dotenvExpand(dotenv.config())
+
 
 ReactDOM.render(
   <React.StrictMode>

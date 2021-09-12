@@ -3,26 +3,29 @@ import About from "../../pages/About";
 import Pictures from "../../pages/Pictures";
 
 import homeIcon from '../../assets/img/023-home.png';
-import pictIcon from '../../assets/img/013-image.png';
-import aboutIcon from '../../assets/img/020-add friend.png';
+import newsFeed from '../../assets/img/006-newsfeed.png';
+import follower from '../../assets/img/021-follower.png';
 
 const menus = [
   {
     path: "/",
     exact: true,
     icon: homeIcon,
+    title: 'Order',
     main: () => <Home></Home>
   },
   {
     path: "/catalogue",
-    icon: pictIcon,
+    icon: newsFeed,
+    title: 'Produk Kanemu',
     main: () => <Pictures></Pictures> 
     //   sidebar: () => <div>shoelaces!</div>,
   },
   {
     path: "/about",
     exact: true,
-    icon: aboutIcon,
+    icon: follower,
+    title: 'Tentang Kanemu',
     main: () => <About></About>
   },
 ];
