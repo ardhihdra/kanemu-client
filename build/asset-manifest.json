@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1a5ff6a0.chunk.css",
+    "main.js": "/static/js/main.8cc55bba.chunk.js",
+    "main.js.map": "/static/js/main.8cc55bba.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.81ddba0a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.81ddba0a.js.map",
+    "static/js/2.f4e16246.chunk.js": "/static/js/2.f4e16246.chunk.js",
+    "static/js/2.f4e16246.chunk.js.map": "/static/js/2.f4e16246.chunk.js.map",
+    "static/js/3.49c045cc.chunk.js": "/static/js/3.49c045cc.chunk.js",
+    "static/js/3.49c045cc.chunk.js.map": "/static/js/3.49c045cc.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.1a5ff6a0.chunk.css.map": "/static/css/main.1a5ff6a0.chunk.css.map",
+    "static/js/2.f4e16246.chunk.js.LICENSE.txt": "/static/js/2.f4e16246.chunk.js.LICENSE.txt",
+    "static/media/021-follower.76919289.png": "/static/media/021-follower.76919289.png",
+    "static/media/chocolate.165fa258.jpg": "/static/media/chocolate.165fa258.jpg",
+    "static/media/chocolate.dfb56de2.jpg": "/static/media/chocolate.dfb56de2.jpg",
+    "static/media/green_tea.64664d69.jpg": "/static/media/green_tea.64664d69.jpg",
+    "static/media/green_tea.d2798bca.jpg": "/static/media/green_tea.d2798bca.jpg",
+    "static/media/honey_lemon.4a61d8a2.jpg": "/static/media/honey_lemon.4a61d8a2.jpg",
+    "static/media/honey_lemon.ab0e3e74.jpg": "/static/media/honey_lemon.ab0e3e74.jpg",
+    "static/media/logo-horizontal.24f0a9da.png": "/static/media/logo-horizontal.24f0a9da.png",
+    "static/media/milktea.7b909151.jpg": "/static/media/milktea.7b909151.jpg",
+    "static/media/milktea.b2ec8773.jpg": "/static/media/milktea.b2ec8773.jpg",
+    "static/media/thai_tea.792e75e9.jpg": "/static/media/thai_tea.792e75e9.jpg",
+    "static/media/thai_tea.cb39cd8c.jpg": "/static/media/thai_tea.cb39cd8c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.81ddba0a.js",
+    "static/js/2.f4e16246.chunk.js",
+    "static/css/main.1a5ff6a0.chunk.css",
+    "static/js/main.8cc55bba.chunk.js"
+  ]
+}

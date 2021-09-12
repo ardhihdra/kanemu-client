@@ -33,6 +33,7 @@ class OrderForm extends React.Component {
             result.map(rs => {
                 this.products_price[rs.name] = rs.price
                 newState[rs.name] = 0
+                return rs
             })
             this.setState({
                 isLoaded: true,

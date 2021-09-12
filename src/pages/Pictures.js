@@ -1,11 +1,13 @@
 import './Pictures.css';
-import img1 from '../assets/img/begeg.jpg';
-import img2 from '../assets/img/chart.png';
-import img3 from '../assets/img/alunalun.jpg';
+import img1 from '../assets/img/products-real/thai_tea.jpg';
+import img2 from '../assets/img/products-real/green_tea.jpg';
+import img3 from '../assets/img/products-real/chocolate.jpg';
+import img4 from '../assets/img/products-real/milktea.jpg';
+import img5 from '../assets/img/products-real/honey_lemon.jpg';
 import React from 'react';
 
 const fetchedImages = [
-    {id: 1, img: img1}, {id:2, img:img2}, {id:3, img:img3}
+    {id: 1, img: img1}, {id:2, img:img2}, {id:3, img:img3}, {id: 4, img:img4}, {id:5, img:img5}, 
 ];
 
 export default class Picture extends React.Component {
@@ -60,8 +62,8 @@ export default class Picture extends React.Component {
                     <div className="ds-container">
                         <div className="ds-row">
                             {this.state.fetchedImages.map((img, idx) => (
-                                <div className="ds-col-4">
-                                    <a href="#" onClick={this.expandImage.bind(this, img)}>
+                                <div className="ds-col-6">
+                                    <a href="/" onClick={this.expandImage.bind(this, img)}>
                                         <img src={img.img} alt="content" className="post-img" style={{'objectFit': 'contain'}}/>
                                     </a>
                                 </div>
