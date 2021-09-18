@@ -5,6 +5,8 @@ import greentea from '../assets/img/products/green_tea.jpg';
 import milktea from '../assets/img/products/milktea.jpg';
 import chocolate from '../assets/img/products/chocolate.jpg';
 import honey from '../assets/img/products/honey_lemon.jpg';
+import Input from '../components/Input'
+// import Confirmation from '../components/Confirmation'
 
 const MASTER_URL = process.env.REACT_APP_MASTER_URL
 
@@ -19,10 +21,11 @@ class OrderForm extends React.Component {
             'Honey Lemon': honey,
         }
         this.products_price = {}
-        this.state = {isLoaded: false, name: '', phone: '', maps: '', total: 0, products: []};
+        this.state = {isLoaded: false, name: '', phone: '', maps: '', total: 0, products: [], isConfirmationShow: false};
         
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.confirmOrder = this.confirmOrder.bind(this);
     }
     
     componentDidMount() {
@@ -52,10 +55,9 @@ class OrderForm extends React.Component {
 
     calcPrice(name, value) {
         let total = 0
-        if(this.products_price[name]) {
-            const diff = (value - (this.state[name] || 0)) * this.products_price[name]
-            total = this.state.total + diff
-        }
+        const diff = (value - (this.state[name] || 0)) * this.products_price[name]
+        total = this.state.total + diff
+        
         return total
     }
 
@@ -64,18 +66,22 @@ class OrderForm extends React.Component {
         const name = event.target.name
         const value = event.target.value
         const payload = {[name]: value}
-        payload.total = this.calcPrice(name, value)
+        if(this.products_price[name]) {
+            payload.total = this.calcPrice(name, value)
+        }
 
         this.setState(payload)
     }
   
     handleSubmit(event) {
+        event.preventDefault();
+        this.setState({'isConfirmationShow': false})
         const data = new FormData()
         const form = {}
         const payload = ['name', 'phone', 'maps', 'total', ...this.state.products.map(pr => pr.name)]
         for(let st in this.state) {
             if(payload.includes(st)) {
-                console.log(st, this.state[st])
+                // console.log(st, this.state[st])
                 form[st] = this.state[st]
                 data.append(st, this.state[st])
             }
@@ -95,7 +101,6 @@ class OrderForm extends React.Component {
                 alert('Gagal Order')
                 console.log(error);
             })
-        event.preventDefault();
     }
 
     showCounter(name, e) {
@@ -105,29 +110,11 @@ class OrderForm extends React.Component {
         this.setState({[name]: value, total})
     }
 
-    render() {
-        const { error, isLoaded, products } = this.state;
-        const listproducts = {
-            display: 'flex',
-            width: '100%',
-            overflowX: 'scroll'
-        }
-        const productsimg = {
-            'width': '11rem',
-            'borderRadius': '8px',
-            'justifyContent': 'center'
-        }
-        const ordercounter = {
-            'display': 'flex',
-            'flexDirection': 'column',
-            borderRadius: 'var(--border-radius-norm)',
-            boxShadow: '5px 2px 8px #c3c3c3'
-        }
-        const smallinput = {
-            width: '80px',
-            marginLeft: 'auto',
-            marginRight: 'auto'
-        }
+    confirmOrder() {
+        this.setState({'isConfirmationShow': true})
+    }
+
+    styling() {
         const button = {
             width: '6.5rem',
             height: '2.5rem',
@@ -136,60 +123,110 @@ class OrderForm extends React.Component {
             border: '2px solid',
             borderRadius: 'var(--border-radius-norm)',
         }
-        const buttonClear = {
-            ...button,
-            backgroundColor: 'white',
-            borderColor: 'var(--green)',
-            color: 'var(--green)'
-        }
         const largeButton = {
             width: '7.5rem',
             height: '3.5rem',
             fontSize: 'larger'
         }
-        const buttonSolid = {
-            ...button,
-            ...largeButton,
-            backgroundColor: 'var(--green-secondary)',
-            borderColor: 'var(--green-secondary',
-            color: 'white'
-
+        return {
+            listproducts: {
+                display: 'flex',
+                width: '100%',
+                overflowX: 'scroll'
+            },
+            productsimg: {
+                'width': '11rem',
+                'borderRadius': '8px',
+                'justifyContent': 'center'
+            },
+            ordercounter: {
+                'display': 'flex',
+                'flexDirection': 'column',
+                borderRadius: 'var(--border-radius-norm)',
+                boxShadow: '5px 2px 8px #c3c3c3'
+            },
+            button: button,
+            buttonClear: {
+                ...button,
+                backgroundColor: 'white',
+                borderColor: 'var(--green)',
+                color: 'var(--green)'
+            },
+            largeButton: largeButton,
+            buttonSolid: {
+                ...button,
+                ...largeButton,
+                backgroundColor: 'var(--green-secondary)',
+                borderColor: 'var(--green-secondary',
+                color: 'white'
+            },
+            flex: {
+                display: 'flex',
+                flexDirection: 'column'
+            },
+            summaryBox: {
+                backgroundColor: Number(this.state.total) ? 'white': 'transparent',
+                maxWidth: '400px',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+            }
         }
+    }
+
+    render() {
+        const { error, isLoaded, products } = this.state;
+        const style = this.styling()
         if(error) return <div>Error: {error.message} </div>;
         else if(!isLoaded) return <div>Loading...</div>;
-        else
+        else 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="ds-m-5">
-                    Nama:
-                    <input className="ds-ml-3" name="name" type="text" value={this.state.name} onChange={this.handleChange} />
-                </div>
-                <div className="ds-m-5">
-                    Whatsapp/Telegram:
-                    <input type="text" className="ds-ml-3" name="phone" value={this.state.phone} onChange={this.handleChange}/>
-                </div>
-                <div className="ds-m-5">
-                    Alamat/Maps:
-                    <input type="text" className="ds-ml-3" name="maps" value={this.state.maps} onChange={this.handleChange}/>
-                </div>
-                <div className="ds-m-4 ds-mt-6">Choose Products:</div>
-                <div style={listproducts}>
+            <div> 
+                { !this.state.isConfirmationShow ? 
+                <form onSubmit={this.handleSubmit}>
+                    <div style={style.flex} className="ds-mt-3">
+                        <Input className="ds-mt-4" label="Nama" name="name" value={this.state.name} placeholder="name" 
+                            onChange={this.handleChange.bind(this)} />
+                        <Input className="ds-mt-4" label="Telepon" name="phone" value={this.state.phone} placeholder="Nomor WA/Telegram" 
+                            onChange={this.handleChange.bind(this)} />
+                        <Input className="ds-mt-4" label="Alamat" name="maps"
+                            value={this.state.name} placeholder="Dianter kemana?" 
+                            onChange={this.handleChange.bind(this)} />
+                    </div>
+                    <h5 className="ds-m-4 ds-mt-5">Choose Products :</h5>
+                    <div style={style.listproducts}>
+                        {products.map((pr,idx) => {
+                            return (
+                                <div key={idx} className="ds-m-5 ds-p-3" style={style.ordercounter}>
+                                    <img src={this.products_img[pr.name]} style={style.productsimg} className="ds-border ds-mb-4" alt="logo" />
+                                    { !this.state[pr.name] || Number(this.state[pr.name]) === 0 ? 
+                                        <button type="button" style={style.buttonClear} onClick={this.showCounter.bind(this, pr.name)}>Pesan</button> : 
+                                        <Input className="ds-m-2" name={pr.name} value={this.state[pr.name]} min="0" type="number"
+                                            placeholder="Dianter kemana?" onChange={this.handleChange.bind(this)} />
+    
+                                    }
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className="ds-m-6"><b>Total Rp. {this.state.total}</b></div>
+                    <button className="ds-m-2" style={style.buttonSolid} type="button" value="Submit" onClick={this.confirmOrder}>Submit</button>
+                </form>
+                : 
+                <div className="ds-border" style={style.summaryBox}>
+                    {Number(this.state.total) ? <div className="ds-m-6" ><b>Kak {this.state.name}, ini pesanan kamu ya :</b></div>: ''}
+                    <div className="ds-m-3">dianter ke {this.state.maps}</div>
                     {products.map((pr,idx) => {
-                        return (
-                            <div key={idx} className="ds-m-5 ds-p-3" style={ordercounter}>
-                                <img src={this.products_img[pr.name]} style={productsimg} className="ds-border ds-mb-4" alt="logo" />
-                                { !this.state[pr.name] || Number(this.state[pr.name]) === 0 ? 
-                                    <button type="button" style={buttonClear} onClick={this.showCounter.bind(this, pr.name)}>Pesan</button> : 
-                                    <input className="ds-m-2" style={smallinput} name={pr.name} type="number"
-                                        value={this.state[pr.name]} min="0" onChange={this.handleChange}/>
-                                }
-                            </div>
-                        )
+                            return (
+                                Number(this.state[pr.name]) ? 
+                                    <div className="ds-m-3"><b>{this.state[pr.name]}</b> {pr.name} : {this.products_price[pr.name] * this.state[pr.name]}</div>
+                                    : ''
+                            )
                     })}
+                    <div className="ds-m-5">Kami bakal hubungi kamu lewat WA/Telgram ke <b>{this.state.phone}</b>, mohon ditunggu 😉</div>
+                    <button className="ds-m-5" style={style.buttonSolid} type="submit" value="Confirm">Pesan</button>
                 </div>
-                <div className="ds-m-5">Total Rp. {this.state.total}</div>
-                <button className="ds-m-2" style={buttonSolid} type="submit" value="Submit">Submit</button>
-            </form>
+                }
+            </div>
         );
     }
 }

@@ -9,7 +9,7 @@ export default function Home() {
         <div>
             <img src={logo} className="App-logo" alt="logo" />
             <div className="txt-header ds-pb-5">Order Now!</div>
-            <div className="ds-border form-container ds-shadow ds-p-3 ds-pt-6">
+            <div className="ds-border form-container ds-shadow ds-p-3">
                 <OrderForm/>
             </div>
         </div>

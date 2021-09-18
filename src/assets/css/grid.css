@@ -1,7 +1,7 @@
 
 .ds-border {
     border: solid 1px var(--grey-border);
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--border-radius-xlg);
 }
 
 .ds-shadow {
