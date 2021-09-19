@@ -13,4 +13,5 @@
     width: 90vw;
     max-width: 1200px;
     margin: 0 4rem 8rem 4rem;
+    background-color: var(--whitesmoke);
 }

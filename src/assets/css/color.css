@@ -9,7 +9,9 @@
     --green: rgb(5, 78, 6);
     --green-secondary: rgb(32, 190, 35);
     --yellow: rgb(255, 255, 84);
+    --red: red;
     --grey-border: rgb(195, 195, 195);
+    --whitesmoke: whitesmoke;
 }
 
 .b-blue {

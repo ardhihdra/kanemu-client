@@ -1,4 +1,10 @@
-
+:root {
+    --border-radius-norm: 8px;
+    --border-radius-sm: 4px;
+    --border-radius-lg: 12px;
+    --border-radius-xlg: 24px;
+}
+  
 .ds-border {
     border: solid 1px var(--grey-border);
     border-radius: var(--border-radius-xlg);
@@ -24,6 +30,24 @@
     grid-template-columns: repeat(12, 1fr);
     width: 100%;
 }
+
+@media screen and (max-width: 560px) {
+    .ds-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .ds-col-4, 
+    .ds-col-5, 
+    .ds-col-6, 
+    .ds-col-7, 
+    .ds-col-8, 
+    .ds-col-9, 
+    .ds-col-10, 
+    .ds-col-11, 
+    .ds-col-12 {
+        grid-column: span 3;
+    }
+}
+
 .ds-col-1 {
     grid-column: span 1;
 }

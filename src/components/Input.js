@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Input.css';
 export default class Input extends React.Component {
     constructor(props) {
         super(props);
@@ -17,11 +17,12 @@ export default class Input extends React.Component {
             label: {
                 fontSize: 'smaller',
                 position: 'relative',
-                top: '-.8rem',
-                left: '4rem',
+                top: '1rem',
+                left: '-30%',
                 width: 'fit-content',
                 backgroundColor: this.props.label ? 'white': 'transparent',
-                padding: '0 2px',
+                borderRadius: 'var(--border-radius-sm)',
+                padding: '1px 2px',
                 color: 'var(--green)'
             },
             smallinput: {

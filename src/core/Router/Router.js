@@ -14,6 +14,17 @@ for(let rt in routes) {
 }
 
 export default function AppRouter() {
+    let prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+        let currentScrollPos = window.pageYOffset;
+        const container = document.getElementById("router-container")
+        if(prevScrollpos > currentScrollPos) {
+            container.style.bottom = "-5vh" // scroll to down
+        } else {
+            container.style.bottom = prevScrollpos === 0 ? "-5vh": ".5vh" // scroll to top 
+        }
+        prevScrollpos = currentScrollPos;
+    }
     return (
         <Router>
             <div className="ds-flow">
@@ -31,7 +42,7 @@ export default function AppRouter() {
                 </Switch>
 
                 
-                <div className="router-container fade-in">
+                <div id="router-container" className="router-container fade-in">
                     <div className="router-list">
                         {routes.menus.map((route, index) => {
                             return (

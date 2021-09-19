@@ -1,5 +1,5 @@
 .txt-header {
-    font-size: calc(24px + .5vmin);
+    font-size: calc(23px + .5vmin);
     font-weight: 700;
     color: var(--green);
 }

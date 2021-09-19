@@ -8,8 +8,8 @@
     position: fixed;
     /* left: 43vw; */
     bottom: .5vh;
-    height: 5.5rem;
-    width: 22rem;
+    height: 4.5rem;
+    width: 20rem;
 
     display: flex;
     justify-content: center;
@@ -22,6 +22,7 @@
     border-radius: 8px;
     opacity: 0.9;
     margin: 1rem 0 .5rem 0;
+    transition: top 2s;
 }
 
 .router-container:hover {
@@ -44,10 +45,10 @@
     background-color: var(--green-secondary);
     border-radius: var(--border-radius-lg);
     /* border: 1px solid var(--green); */
-    min-height: 3rem;
-    width: 3rem;
+    min-height: 2.5rem;
+    width: 2.5rem;
     align-items: center;
-    margin: .5rem .55rem .5rem 1rem;
+    margin: .3rem .35rem .3rem .5rem;
     padding: .4rem;
     opacity: .5;
 }
@@ -57,7 +58,7 @@
 }
 
 .main-icon {
-    height: 2.5rem;
-    padding-top: .4rem;
+    height: 2rem;
+    padding-top: .3rem;
     pointer-events: none;
 }

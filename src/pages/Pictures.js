@@ -1,10 +1,11 @@
-import './Pictures.css';
+import React from 'react';
+import logo from '../assets/img/logo/logo-horizontal.png';
 import img1 from '../assets/img/products-real/thai_tea.jpg';
 import img2 from '../assets/img/products-real/green_tea.jpg';
 import img3 from '../assets/img/products-real/chocolate.jpg';
 import img4 from '../assets/img/products-real/milktea.jpg';
 import img5 from '../assets/img/products-real/honey_lemon.jpg';
-import React from 'react';
+import './Pictures.css';
 
 const fetchedImages = [
     {id: 1, img: img1}, {id:2, img:img2}, {id:3, img:img3}, {id: 4, img:img4}, {id:5, img:img5}, 
@@ -47,28 +48,25 @@ export default class Picture extends React.Component {
         let FullPreview = <div></div>;
         if(this.state.isFullPreview) {
             FullPreview = <div>FullScreen</div>
-        }    
+        }
+        const productDescription = {
+        }
         return (
             <div className="ds-pictures">
-                <div className="ds-m-4">
-                    <h4>How I see the world</h4>
-                    <div className="txt-subheader">
-                        I always think why we need to put our photos in those pink app ?
-                        <br/>So I made up my own damn place ^^ 
-                        {/* <br/>Altough less people see it but it's fine because that it's just for people that care ^^ */}
-                    </div>
-                </div>
-                <div>
-                    <div className="ds-container">
-                        <div className="ds-row">
-                            {this.state.fetchedImages.map((img, idx) => (
-                                <div className="ds-col-6">
-                                    <a href="/" onClick={this.expandImage.bind(this, img)}>
-                                        <img src={img.img} alt="content" className="post-img" style={{'objectFit': 'contain'}}/>
-                                    </a>
-                                </div>
-                            ))}
-                        </div>
+                <img src={logo} className="App-logo" alt="logo" />
+                <div className="txt-header ds-pb-5">Produk Kami</div>
+                <div className="txt-subheader"></div>
+                <div className="ds-container">
+                    <div className="ds-row ds-m-auto">
+                        {this.state.fetchedImages.map((img, idx) => (
+                            <div className="ds-col-6 ds-mb-5">
+                                <div className="txt-subheader">Minuman A</div>
+                                <a href="/" onClick={this.expandImage.bind(this, img)}>
+                                    <img src={img.img} alt="content" className="post-img" style={{'objectFit': 'contain'}}/>
+                                </a>
+                                <div className="ds-border ds-p-3" style={productDescription}>Description alflasdkfj</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="ds-modal">

@@ -4,13 +4,6 @@
 @import url("../../assets/css/font.css");
 @import url("../../assets/css/animation.css");
 
-:root {
-  --border-radius-norm: 8px;
-  --border-radius-sm: 4px;
-  --border-radius-lg: 12px;
-  --border-radius-xlg: 16px;
-}
-
 .ds-align-center {
   display: flex;
   text-align: center;

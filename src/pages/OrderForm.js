@@ -26,6 +26,7 @@ class OrderForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.confirmOrder = this.confirmOrder.bind(this);
+        this.cancelOrder = this.cancelOrder.bind(this);
     }
     
     componentDidMount() {
@@ -113,6 +114,9 @@ class OrderForm extends React.Component {
     confirmOrder() {
         this.setState({'isConfirmationShow': true})
     }
+    cancelOrder() {
+        this.setState({'isConfirmationShow': false})
+    }
 
     styling() {
         const button = {
@@ -124,7 +128,7 @@ class OrderForm extends React.Component {
             borderRadius: 'var(--border-radius-norm)',
         }
         const largeButton = {
-            width: '7.5rem',
+            width: '8rem',
             height: '3.5rem',
             fontSize: 'larger'
         }
@@ -157,12 +161,26 @@ class OrderForm extends React.Component {
                 ...button,
                 ...largeButton,
                 backgroundColor: 'var(--green-secondary)',
-                borderColor: 'var(--green-secondary',
+                borderColor: 'var(--green-secondary)',
                 color: 'white'
+            },
+            cancelButtonSolid: {
+                ...button,
+                ...largeButton,
+                backgroundColor: 'white',
+                borderColor: 'var(--red)',
+                color: 'var(--red)'
             },
             flex: {
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                maxWidth: '200px',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+            },
+            flexRow: {
+                display: 'flex',
+                flexDirection: 'row',
             },
             summaryBox: {
                 backgroundColor: Number(this.state.total) ? 'white': 'transparent',
@@ -183,16 +201,16 @@ class OrderForm extends React.Component {
             <div> 
                 { !this.state.isConfirmationShow ? 
                 <form onSubmit={this.handleSubmit}>
-                    <div style={style.flex} className="ds-mt-3">
-                        <Input className="ds-mt-4" label="Nama" name="name" value={this.state.name} placeholder="name" 
+                    <div style={style.flex}>
+                        <Input label="Nama" name="name" value={this.state.name} placeholder="name" 
                             onChange={this.handleChange.bind(this)} />
-                        <Input className="ds-mt-4" label="Telepon" name="phone" value={this.state.phone} placeholder="Nomor WA/Telegram" 
+                        <Input label="Telepon" name="phone" value={this.state.phone} placeholder="Nomor WA/Telegram" 
                             onChange={this.handleChange.bind(this)} />
-                        <Input className="ds-mt-4" label="Alamat" name="maps"
+                        <Input label="Alamat" name="maps"
                             value={this.state.name} placeholder="Dianter kemana?" 
                             onChange={this.handleChange.bind(this)} />
                     </div>
-                    <h5 className="ds-m-4 ds-mt-5">Choose Products :</h5>
+                    <h5 className="ds-m-4 ds-mt-5" style={{color: 'var(--green)'}}>Choose Products :</h5>
                     <div style={style.listproducts}>
                         {products.map((pr,idx) => {
                             return (
@@ -208,22 +226,25 @@ class OrderForm extends React.Component {
                             )
                         })}
                     </div>
-                    <div className="ds-m-6"><b>Total Rp. {this.state.total}</b></div>
+                    <div className="ds-m-6" style={{color: 'var(--green)'}}><b>Total Rp. {this.state.total}</b></div>
                     <button className="ds-m-2" style={style.buttonSolid} type="button" value="Submit" onClick={this.confirmOrder}>Submit</button>
                 </form>
                 : 
-                <div className="ds-border" style={style.summaryBox}>
-                    {Number(this.state.total) ? <div className="ds-m-6" ><b>Kak {this.state.name}, ini pesanan kamu ya :</b></div>: ''}
+                <div className="ds-border ds-m-6" style={style.summaryBox}>
+                    {Number(this.state.total) ? <div className="ds-m-6" ><b>Kak {this.state.name}, konfirmasi pesanan kamu ya :</b></div>: ''}
                     <div className="ds-m-3">dianter ke {this.state.maps}</div>
                     {products.map((pr,idx) => {
                             return (
                                 Number(this.state[pr.name]) ? 
-                                    <div className="ds-m-3"><b>{this.state[pr.name]}</b> {pr.name} : {this.products_price[pr.name] * this.state[pr.name]}</div>
+                                    <div className="ds-m-3">🍹<b>{this.state[pr.name]}</b> {pr.name} : {this.products_price[pr.name] * this.state[pr.name]}</div>
                                     : ''
                             )
                     })}
                     <div className="ds-m-5">Kami bakal hubungi kamu lewat WA/Telgram ke <b>{this.state.phone}</b>, mohon ditunggu 😉</div>
-                    <button className="ds-m-5" style={style.buttonSolid} type="submit" value="Confirm">Pesan</button>
+                    <div style={style.flexRow}>
+                        <button className="ds-mt-5 ds-mb-1" style={style.cancelButtonSolid} type="button" onClick={this.cancelOrder} placeholder="Kembali ke menu">Cancel</button>
+                        <button className="ds-m-5" style={style.buttonSolid} type="submit" value="Confirm">Pesan Sekarang</button>
+                    </div>
                 </div>
                 }
             </div>
