@@ -56,7 +56,8 @@ class OrderForm extends React.Component {
 
     calcPrice(name, value) {
         let total = 0
-        const diff = (value - (this.state[name] || 0)) * this.products_price[name]
+        const count = this.state[name] === -1 ? 0: (this.state[name] || 0)
+        const diff = (value - count) * this.products_price[name]
         total = this.state.total + diff
         
         return total
@@ -216,10 +217,10 @@ class OrderForm extends React.Component {
                             return (
                                 <div key={idx} className="ds-m-5 ds-p-3" style={style.ordercounter}>
                                     <img src={this.products_img[pr.name]} style={style.productsimg} className="ds-border ds-mb-4" alt="logo" />
-                                    { !this.state[pr.name] || Number(this.state[pr.name]) === -1 ? 
-                                        <button type="button" style={style.buttonClear} onClick={this.showCounter.bind(this, pr.name)}>Pesan</button> : 
+                                    { Number(this.state[pr.name]) >= 0 ? 
                                         <Input className="ds-m-2" name={pr.name} value={this.state[pr.name]} min="0" type="number"
-                                            placeholder="Dianter kemana?" onChange={this.handleChange.bind(this)} />
+                                        placeholder="Dianter kemana?" onChange={this.handleChange.bind(this)} /> :
+                                        <button type="button" style={style.buttonClear} onClick={this.showCounter.bind(this, pr.name)}>Pesan</button>
     
                                     }
                                 </div>
