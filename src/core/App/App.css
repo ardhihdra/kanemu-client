@@ -69,15 +69,23 @@
 }
 
 .App-main {
+  height: 100%;
+  background-image: url('../../assets/img/background.jpeg');
+  /* background-repeat: no-repeat; */
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.main-section {
   min-height: 100vh;
+  max-width: 600px;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: yellowgreen;
-  /* font-size: calc(10px + 2vmin); */
-  color: black;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .App-link {
@@ -95,6 +103,5 @@
 
 .tribute {
   font-size: 8pt;
-  background-color: white;
-
+  background-color: transparent;
 }

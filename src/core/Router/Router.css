@@ -2,6 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 550px;
+}
+
+.pages-container {
+    width: 100vw;
+    max-width: 600px;
 }
 
 .router-container {

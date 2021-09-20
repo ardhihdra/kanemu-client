@@ -10,8 +10,32 @@
 
 .form-container {
     min-height: 50vh;
-    width: 90vw;
-    max-width: 1200px;
-    margin: 0 4rem 8rem 4rem;
+    margin: 0 1rem 2rem 1rem;
     background-color: var(--whitesmoke);
+}
+
+.contact-info {
+    min-height: 20vh;    
+    color: var(--green);
+    font-weight: 600;
+}
+
+.contact-flex {
+    display: flex;
+    justify-content: center;
+    margin: 0 4rem 2rem 4rem;
+    text-align: left;
+}
+
+.logo {
+    height: 34px;
+}
+
+.grow2 {
+    flex-grow: 2;
+}
+
+.hashtag {
+    font-weight: 700;
+    font-size: calc(14px + .5vmin);
 }
