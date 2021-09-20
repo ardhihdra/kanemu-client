@@ -36,7 +36,7 @@ class OrderForm extends React.Component {
             let newState = {}
             result.map(rs => {
                 this.products_price[rs.name] = rs.price
-                newState[rs.name] = 0
+                newState[rs.name] = -1
                 return rs
             })
             this.setState({
@@ -216,7 +216,7 @@ class OrderForm extends React.Component {
                             return (
                                 <div key={idx} className="ds-m-5 ds-p-3" style={style.ordercounter}>
                                     <img src={this.products_img[pr.name]} style={style.productsimg} className="ds-border ds-mb-4" alt="logo" />
-                                    { !this.state[pr.name] || Number(this.state[pr.name]) === 0 ? 
+                                    { !this.state[pr.name] || Number(this.state[pr.name]) === -1 ? 
                                         <button type="button" style={style.buttonClear} onClick={this.showCounter.bind(this, pr.name)}>Pesan</button> : 
                                         <Input className="ds-m-2" name={pr.name} value={this.state[pr.name]} min="0" type="number"
                                             placeholder="Dianter kemana?" onChange={this.handleChange.bind(this)} />
