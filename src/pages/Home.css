@@ -18,17 +18,28 @@
     min-height: 20vh;    
     color: var(--green);
     font-weight: 600;
+    font-size: calc(12px + .5vmin);
 }
 
 .contact-flex {
     display: flex;
     justify-content: center;
-    margin: 0 4rem 2rem 4rem;
+    margin: 0 .5rem 2rem 1.5rem;
     text-align: left;
 }
 
 .logo {
     height: 34px;
+    padding: 1px;
+}
+
+.logo:hover {
+    border-radius: 50%;
+    background-color: var(--green-secondary);
+}
+
+.copyable {
+    cursor: copy;
 }
 
 .grow2 {
@@ -38,4 +49,5 @@
 .hashtag {
     font-weight: 700;
     font-size: calc(14px + .5vmin);
+    word-spacing: .5rem;
 }

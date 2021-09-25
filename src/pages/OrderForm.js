@@ -121,6 +121,7 @@ class OrderForm extends React.Component {
 
     styling() {
         const button = {
+            cursor: 'pointer',
             width: '6.5rem',
             height: '2.5rem',
             marginLeft: 'auto',
@@ -155,7 +156,8 @@ class OrderForm extends React.Component {
                 ...button,
                 backgroundColor: 'white',
                 borderColor: 'var(--green)',
-                color: 'var(--green)'
+                color: 'var(--green)',
+                cursor: 'pointer'
             },
             largeButton: largeButton,
             buttonSolid: {
@@ -163,7 +165,7 @@ class OrderForm extends React.Component {
                 ...largeButton,
                 backgroundColor: 'var(--green-secondary)',
                 borderColor: 'var(--green-secondary)',
-                color: 'white'
+                color: 'white',
             },
             cancelButtonSolid: {
                 ...button,
@@ -182,6 +184,7 @@ class OrderForm extends React.Component {
             flexRow: {
                 display: 'flex',
                 flexDirection: 'row',
+                justifyContent: 'center'
             },
             summaryBox: {
                 backgroundColor: Number(this.state.total) ? 'white': 'transparent',
@@ -202,6 +205,14 @@ class OrderForm extends React.Component {
             <div> 
                 { !this.state.isConfirmationShow ? 
                 <form onSubmit={this.handleSubmit}>
+                    <div style={style.flexRow}>
+                        <a href="https://t.me/ihsanbs" className="ds-m-3" target="_blank" rel="noreferrer">
+                            <button type="button" style={style.buttonClear}>Order Via Telegram</button>
+                        </a>
+                        <a href="https://web.whatsapp.com/send?phone=6289662362510" className="ds-m-3" target="_blank" rel="noreferrer">
+                            <button type="button" style={style.buttonClear}>Order Via Whatsapp</button>
+                        </a>
+                    </div>
                     <div style={style.flex}>
                         <Input label="Nama" name="name" value={this.state.name} placeholder="name" 
                             onChange={this.handleChange.bind(this)} />
@@ -221,7 +232,6 @@ class OrderForm extends React.Component {
                                         <Input className="ds-m-2" name={pr.name} value={this.state[pr.name]} min="0" type="number"
                                         placeholder="Dianter kemana?" onChange={this.handleChange.bind(this)} /> :
                                         <button type="button" style={style.buttonClear} onClick={this.showCounter.bind(this, pr.name)}>Pesan</button>
-    
                                     }
                                 </div>
                             )

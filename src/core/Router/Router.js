@@ -18,12 +18,14 @@ export default function AppRouter() {
     window.onscroll = function() {
         let currentScrollPos = window.pageYOffset;
         const container = document.getElementById("router-container")
-        if(prevScrollpos > currentScrollPos) {
-            container.style.bottom = "-5vh" // scroll to down
-        } else {
-            container.style.bottom = prevScrollpos === 0 ? "-5vh": ".5vh" // scroll to top 
+        if(container) {
+            if(prevScrollpos > currentScrollPos) {
+                container.style.bottom = "-5vh" // scroll to down
+            } else {
+                container.style.bottom = prevScrollpos === 0 ? "-5vh": ".5vh" // scroll to top 
+            }
+            prevScrollpos = currentScrollPos;
         }
-        prevScrollpos = currentScrollPos;
     }
     return (
         <Router>
