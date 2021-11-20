@@ -21,7 +21,7 @@ class OrderForm extends React.Component {
             'Honey Lemon': honey,
         }
         this.products_price = {}
-        this.state = {isLoaded: false, name: '', phone: '', maps: '', total: 0, products: [], isConfirmationShow: false};
+        this.state = {isLoaded: false, name: '', phone: '', maps: '', total: 0, products: [], isConfirmationShow: false, error_message: null};
         
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,7 +56,7 @@ class OrderForm extends React.Component {
 
     calcPrice(name, value) {
         let total = 0
-        const count = this.state[name] === -1 ? 0: (this.state[name] || 0)
+        const count = this.state[name] > 0 ? this.state[name]: 0
         const diff = (value - count) * this.products_price[name]
         total = this.state.total + diff
         
@@ -113,7 +113,24 @@ class OrderForm extends React.Component {
     }
 
     confirmOrder() {
-        this.setState({'isConfirmationShow': true})
+        const phoneIndoRegex = /\+?([ -]?\d+)+|\(\d+\)([ -]\d+)/
+        const nameExist = this.state.name && this.state.name.length
+        const phoneExist = (this.state.phone && this.state.phone.length) && phoneIndoRegex.exec(this.state.phone)
+        const mapsExist = this.state.maps && this.state.maps.length
+        let isProductExist = false
+        this.state.products.map(pr => {
+            if(this.state[pr.name] > 0) {
+                isProductExist = true
+            }
+        })
+        if(!nameExist) this.setState({'error_message': 'Mohon input nama pemesan yaa\n'})
+        if(!phoneExist) this.setState({'error_message': 'Mohon input nomor hp yang valid yaa biar kami langsung hubungi kamu\n'})
+        if(!mapsExist) this.setState({'error_message': 'Mohon input alamat buat kami anter kesana yaa\n'})
+        if(!isProductExist) this.setState({'error_message': 'Kamu belum milih produk :)\n'})
+        if(nameExist && phoneExist && mapsExist && isProductExist) {
+            this.setState({'isConfirmationShow': true})
+            this.setState({'error_message': ''})
+        }
     }
     cancelOrder() {
         this.setState({'isConfirmationShow': false})
@@ -136,9 +153,9 @@ class OrderForm extends React.Component {
         }
         return {
             listproducts: {
-                display: 'flex',
+                // display: 'flex',
                 width: '100%',
-                overflowX: 'scroll'
+                // overflowX: 'scroll'
             },
             productsimg: {
                 'width': '11rem',
@@ -213,20 +230,11 @@ class OrderForm extends React.Component {
                             <button type="button" style={style.buttonClear}>Order Via Whatsapp</button>
                         </a>
                     </div>
-                    <div style={style.flex}>
-                        <Input label="Nama" name="name" value={this.state.name} placeholder="name" 
-                            onChange={this.handleChange.bind(this)} />
-                        <Input label="Telepon" name="phone" value={this.state.phone} placeholder="Nomor WA/Telegram" 
-                            onChange={this.handleChange.bind(this)} />
-                        <Input label="Alamat" name="maps"
-                            value={this.state.name} placeholder="Dianter kemana?" 
-                            onChange={this.handleChange.bind(this)} />
-                    </div>
                     <h5 className="ds-m-4 ds-mt-5" style={{color: 'var(--green)'}}>Choose Products :</h5>
-                    <div style={style.listproducts}>
+                    <div className="ds-row" style={style.listproducts}>
                         {products.map((pr,idx) => {
                             return (
-                                <div key={idx} className="ds-m-5 ds-p-3" style={style.ordercounter}>
+                                <div key={idx} className="ds-col-6 ds-m-6 ds-p-4" style={style.ordercounter}>
                                     <img src={this.products_img[pr.name]} style={style.productsimg} className="ds-border ds-mb-4" alt="logo" />
                                     { Number(this.state[pr.name]) >= 0 ? 
                                         <Input className="ds-m-2" name={pr.name} value={this.state[pr.name]} min="0" type="number"
@@ -237,17 +245,31 @@ class OrderForm extends React.Component {
                             )
                         })}
                     </div>
+                    <h5 className="ds-m-4 ds-mt-5" style={{color: 'var(--green)'}}>Informasi :</h5>
+                    <div style={style.flex}>
+                        <Input label="Nama" name="name" value={this.state.name} placeholder="name" 
+                            onChange={this.handleChange.bind(this)} required={true}/>
+                        <Input label="Telepon" name="phone" value={this.state.phone} placeholder="Nomor WA/Telegram" 
+                            onChange={this.handleChange.bind(this)}required={true} />
+                        <Input label="Alamat" name="maps"
+                            value={this.state.name} placeholder="Dianter kemana?" 
+                            onChange={this.handleChange.bind(this)} required={true}/>
+                    </div>
                     <div className="ds-m-6" style={{color: 'var(--green)'}}><b>Total Rp. {this.state.total}</b></div>
+                    <div className="ds-m-6" style={{color: 'red'}}>{this.state.error_message}</div>
                     <button className="ds-m-2" style={style.buttonSolid} type="button" value="Submit" onClick={this.confirmOrder}>Submit</button>
                 </form>
                 : 
                 <div className="ds-border ds-m-6" style={style.summaryBox}>
                     {Number(this.state.total) ? <div className="ds-m-6" ><b>Kak {this.state.name}, konfirmasi pesanan kamu ya :</b></div>: ''}
-                    <div className="ds-m-3">dianter ke {this.state.maps}</div>
+                    <div className="ds-m-3">🏠 dianter ke {this.state.maps}</div>
                     {products.map((pr,idx) => {
                             return (
-                                Number(this.state[pr.name]) ? 
-                                    <div className="ds-m-3">🍹<b>{this.state[pr.name]}</b> {pr.name} : {this.products_price[pr.name] * this.state[pr.name]}</div>
+                                this.state[pr.name] > 0 ? 
+                                    <div key={idx} className="ds-m-3">🍹
+                                        <b>{this.state[pr.name] > 0 ? this.state[pr.name]: 0}</b> 
+                                        {pr.name} : {this.products_price[pr.name] * (this.state[pr.name] > 0 ? this.state[pr.name]: 0)}
+                                    </div>
                                     : ''
                             )
                     })}

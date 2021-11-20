@@ -37,6 +37,7 @@ export default class Input extends React.Component {
         const value = this.state.value
         const name = this.props.name
         const label = this.props.label
+        const required = this.props.required
         const type = this.props.type || 'text'
         const min = type === 'number' ? this.props.min: null
         const max = type === 'number' ? this.props.max: null 
@@ -47,7 +48,7 @@ export default class Input extends React.Component {
                 <span style={style.label}>{label}</span>
                 <input className="ds-ml-3 ds-p-1" name={name} type={type} value={value} 
                     min={min} max={max} style={type === 'number' ? style.smallinput: {}}
-                    placeholder={placeholder} onChange={this.handleChange}/>
+                    placeholder={placeholder} onChange={this.handleChange} required={required}/>
             </div>
         )
     }
